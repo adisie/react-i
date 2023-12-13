@@ -1,19 +1,24 @@
 import {NavLink} from 'react-router-dom'
 
+// sub headers
+import LoggedOutHeader from './sub-headers/LoggedOutHeader'
+import LoggedInHeader from './sub-headers/LoggedInHeader'
+
 const Header = () => {
     return ( 
         <header>
-            <ul>
-                <li>
-                    <NavLink to='/'>Home</NavLink>
-                </li>
-                <li>
-                    <NavLink to='/login'>Login</NavLink>
-                </li>
-                <li>
-                    <NavLink to='/signup'>Signup</NavLink>
-                </li>
-            </ul>
+            <div className="sub-container header-container">
+                <div className="site-logo">
+                    <NavLink to='/' className='logo-home-link'>ishare</NavLink>
+                </div>
+                {
+                    !true
+                    ?
+                    <LoggedInHeader />
+                    :
+                    <LoggedOutHeader />
+                }
+            </div>
         </header>
      );
 }
