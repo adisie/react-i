@@ -17,7 +17,7 @@ const Home = () => {
         rightContainer.style.display = 'flex'
         // if(rightContainer.)
         if(!user){
-            dispatch(loginSignupToggler())
+            dispatch(loginSignupToggler(true))
             dispatch(formErrorToggler(true))
         }
     }

@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { useDispatch } from "react-redux"
 
-import {loginSignupToggler} from '../user/zuserSclice'
+import {loginSignupToggler,resetErrors} from '../user/zuserSclice'
 
 const Signup = () => {
     // local states
@@ -103,7 +103,10 @@ const Signup = () => {
             </div>
             <div className="btn-container">
                 <span className="submit-btn" onClick={submitHandler}>Signup</span>
-                <span className="nav-link-btn" onClick={()=>dispatch(loginSignupToggler())}>have account ?</span>
+                <span className="nav-link-btn" onClick={()=>{
+                    dispatch(loginSignupToggler(true))
+                    dispatch(resetErrors())
+                }}>have account ?</span>
             </div>
         </form>
     </div>

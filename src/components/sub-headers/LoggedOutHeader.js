@@ -1,7 +1,7 @@
 
 import { useDispatch,useSelector } from 'react-redux'
 
-import {selecteIsShowLogin,loginSignupToggler} from '../../features/user/zuserSclice'
+import {selecteIsShowLogin,loginSignupToggler,resetErrors} from '../../features/user/zuserSclice'
 
 const LoggedOutHeader = () => {
   // states
@@ -12,6 +12,7 @@ const LoggedOutHeader = () => {
 
   // toggler
   const toLoginHandler = () => {
+    dispatch(resetErrors())
     const rightContainer = document.querySelector('.home-right-container')
     rightContainer.style.display = 'flex'
     if(!isShowLogin){
@@ -20,6 +21,7 @@ const LoggedOutHeader = () => {
   }
 
   const toSignupHandler = () => {
+    dispatch(resetErrors())
     const rightContainer = document.querySelector('.home-right-container')
     rightContainer.style.display = 'flex'
     if(isShowLogin){

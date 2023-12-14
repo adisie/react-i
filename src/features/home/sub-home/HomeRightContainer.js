@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux"
+
 import { IoIosCloseCircle } from "react-icons/io"
+
+// actions
+import {resetErrors} from '../../user/zuserSclice'
 
 // pages
 import LoginSignup from "../../user/LoginSignup"
@@ -6,8 +11,12 @@ import UserProfileContainer from "../../user/UserProfileContainer"
 
 const HomeRightContainer = () => {
 
+    // dispatch
+    const dispatch = useDispatch()
+
     // hide home right container
     const hideHomeRightContainer = () => {
+        dispatch(resetErrors())
         const container = document.querySelector('.home-right-container')
         const usernameError = document.querySelector('.error.username')
         const emailError = document.querySelector('.error.email')

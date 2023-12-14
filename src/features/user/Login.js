@@ -6,6 +6,9 @@ import {
     selectIsFormError,
     loginSignupToggler,
     formErrorToggler,
+    loginUser,
+    selectErrors,
+    resetErrors,
 } from '../user/zuserSclice'
 
 const Login = () => {
@@ -20,6 +23,7 @@ const Login = () => {
 
   // states from slice
   const isFormError = useSelector(selectIsFormError)
+  const errors = useSelector(selectErrors)
   // dispatch
   const dispatch = useDispatch()
 
@@ -64,13 +68,16 @@ const Login = () => {
     }
 
     if(username.trim() && password){
-      console.log({username,password})
-      setFormField({
-        username: '',
-        password: ''
-      })
+      dispatch(loginUser({username,password}))
     }
   }
+
+  // if(!errors){
+  //   setFormField({
+  //     username: '',
+  //     password: ''
+  //   })
+  // }
 
   return (
     <div className="form-container">
@@ -80,17 +87,20 @@ const Login = () => {
                 <input type="text" placeholder="username" name="username"  
                   value={username} 
                   onChange={inputChangeHandler} />
-                <div className="error username"></div>
+                <div className="error username">{errors ? errors.username : ''}</div>
             </div>
             <div className="input-controll">
                 <input type="password" placeholder="password" name="password" 
                   value={password} 
                   onChange={inputChangeHandler} />
-                <div className="error password"></div>
+                <div className="error password">{errors ? errors.password : ''}</div>
             </div>
             <div className="btn-container">
                 <span className="submit-btn" onClick={submitHandler}>Login</span>
-                <span className="nav-link-btn" onClick={()=>dispatch(loginSignupToggler())}>no account ?</span>
+                <span className="nav-link-btn" onClick={()=>{
+                  dispatch(loginSignupToggler(false))
+                  dispatch(resetErrors())
+                }}>no account ?</span>
             </div>
         </form>
     </div>
