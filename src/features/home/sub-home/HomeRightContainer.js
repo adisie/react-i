@@ -9,6 +9,15 @@ const HomeRightContainer = () => {
     // hide home right container
     const hideHomeRightContainer = () => {
         const container = document.querySelector('.home-right-container')
+        const usernameError = document.querySelector('.error.username')
+        const emailError = document.querySelector('.error.email')
+        const passwordError = document.querySelector('.error.password')
+        const password2Error = document.querySelector('.error.password2')
+        if(usernameError) usernameError.textContent = ''
+        if(emailError) emailError.textContent = ''
+        if(passwordError) passwordError.textContent = ''
+        if(password2Error) password2Error.textContent = ''
+
         if(window.innerWidth < 712) {
             container.style.display = 'none'
         }
