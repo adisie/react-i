@@ -8,7 +8,7 @@ import Login from "./features/user/Login"
 import Signup from "./features/user/Signup"
 
 // pages -> posts
-import Home from './features/posts/Home'
+import Home from './features/home/Home'
 
 const App = () => {
   return (

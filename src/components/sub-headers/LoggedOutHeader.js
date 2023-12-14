@@ -12,16 +12,21 @@ const LoggedOutHeader = () => {
 
   // toggler
   const toLoginHandler = () => {
+    const rightContainer = document.querySelector('.home-right-container')
+    rightContainer.style.display = 'flex'
     if(!isShowLogin){
       dispatch(loginSignupToggler())
     }
   }
 
   const toSignupHandler = () => {
+    const rightContainer = document.querySelector('.home-right-container')
+    rightContainer.style.display = 'flex'
     if(isShowLogin){
       dispatch(loginSignupToggler())
     }
   }
+ 
 
   return (
     <div className="nav-user">

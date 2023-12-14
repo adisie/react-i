@@ -128,11 +128,24 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
   overflow: hidden;
 }
 .home-container .home-content .home-right-container {
+  position: relative;
   height: 100%;
   grid-column: 5/7;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+.home-container .home-content .home-right-container .home-right-container-close-btn {
+  position: absolute;
+  top: -3px;
+  right: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3em;
+  color: rgb(145, 0, 0);
+  z-index: 23;
+  display: none;
 }
 .home-container .home-content .home-right-container .form-container {
   width: 100%;
@@ -235,11 +248,11 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
 }
 .home-container .home-content .home-right-container .form-container form .btn-container .submit-btn {
   border: none;
-  border-radius: 0.3em;
+  border-radius: 0.15em;
   cursor: pointer;
   font-family: "Times New Roman", Times, serif;
   font-size: 0.95em;
-  padding: 0.13em 1.5em;
+  padding: 0.25em 1.5em;
   background: rgb(2, 123, 167);
   color: white;
   transition: 1s;
@@ -277,10 +290,14 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
     grid-column: 1/7;
   }
   .home-container .home-content .home-right-container {
+    display: none;
     position: absolute;
     right: 0;
     top: 0;
     z-index: 21;
+  }
+  .home-container .home-content .home-right-container .home-right-container-close-btn {
+    display: block;
   }
   .home-container .home-content .home-right-container .form-container {
     padding: 0.3em 0.5em;
