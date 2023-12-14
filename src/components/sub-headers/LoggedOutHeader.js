@@ -16,7 +16,7 @@ const LoggedOutHeader = () => {
     const rightContainer = document.querySelector('.home-right-container')
     rightContainer.style.display = 'flex'
     if(!isShowLogin){
-      dispatch(loginSignupToggler())
+      dispatch(loginSignupToggler(true))
     }
   }
 
@@ -25,7 +25,7 @@ const LoggedOutHeader = () => {
     const rightContainer = document.querySelector('.home-right-container')
     rightContainer.style.display = 'flex'
     if(isShowLogin){
-      dispatch(loginSignupToggler())
+      dispatch(loginSignupToggler(false))
     }
   }
  

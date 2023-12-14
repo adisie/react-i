@@ -1,15 +1,18 @@
-import { useDispatch } from "react-redux"
+import { useDispatch,useSelector } from "react-redux"
 
 import { IoIosCloseCircle } from "react-icons/io"
 
 // actions
-import {resetErrors} from '../../user/zuserSclice'
+import {resetErrors,selectUser} from '../../user/zuserSclice'
 
 // pages
 import LoginSignup from "../../user/LoginSignup"
 import UserProfileContainer from "../../user/UserProfileContainer"
 
 const HomeRightContainer = () => {
+
+    // states from slices
+    const user = useSelector(selectUser)
 
     // dispatch
     const dispatch = useDispatch()
@@ -36,7 +39,7 @@ const HomeRightContainer = () => {
     <div className="home-right-container">
         <button className='home-right-container-close-btn' onClick={hideHomeRightContainer}><IoIosCloseCircle /></button>
         {
-            !true 
+            user 
             ?
             <UserProfileContainer />
             :

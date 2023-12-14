@@ -68,6 +68,7 @@ header .header-container .nav-user .logged-in-nav .username-span {
   color: rgba(255, 255, 255, 0.823);
 }
 header .header-container .nav-user .logged-in-nav .user-profile {
+  display: none !important;
   width: 32px;
   height: 28px;
   border-radius: 50%;
@@ -108,6 +109,11 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
   width: 100%;
 }
 
+@media screen and (max-width: 712px) {
+  header .header-container .nav-user .logged-in-nav .user-profile {
+    display: flex !important;
+  }
+}
 .home-container {
   padding: 0;
   height: 100%;
@@ -146,6 +152,66 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
   color: rgb(145, 0, 0);
   z-index: 23;
   display: none;
+}
+.home-container .home-content .home-right-container .login-spinner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(223, 222, 222);
+}
+.home-container .home-content .home-right-container .login-spinner .spinner {
+  padding: 4em;
+  position: relative;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-container .home-content .home-right-container .login-spinner .spinner .ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: rgb(2, 123, 167) rgb(2, 123, 167) rgb(2, 123, 167) transparent;
+  animation: spinner 1s infinite linear;
+}
+@keyframes spinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.home-container .home-content .home-right-container .login-spinner .spinner .ring .ring-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: rgb(2, 123, 167) transparent rgb(2, 123, 167) rgb(2, 123, 167);
+  animation: spinner2 0.5s infinite linear;
+}
+@keyframes spinner2 {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.home-container .home-content .home-right-container .login-spinner .spinner .ring .ring-2 .ring-3 {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: rgb(2, 123, 167) rgb(2, 123, 167) rgb(2, 123, 167) transparent;
+  animation: spinner3 0.3s infinite linear;
+}
+@keyframes spinner3 {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .home-container .home-content .home-right-container .form-container {
   width: 100%;

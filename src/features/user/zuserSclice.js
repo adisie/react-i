@@ -1,10 +1,16 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios'
 
+// local user
+const localUser = JSON.parse(localStorage.getItem('user'))
+
 const initialState = {
     isShowLogin: true,
     isFormError: false,
-    user: null,
+    isLogginLoading: false,
+    isLoginSuccessFull: false,
+    isLogoutSuccessFull: false,
+    user: localUser ? localUser : null,
     errors: null,
 }
 
@@ -12,6 +18,16 @@ const initialState = {
 export const loginUser = createAsyncThunk('user/loginUser',async data =>{
     try{
         const response = await axios.post('/api/user/login',data,{withCredentials: true})
+        return response.data
+    }catch(err){
+        return err.response.data
+    }
+})
+
+// logout user
+export const logoutUser = createAsyncThunk('user/logoutUser',async () => {
+    try{
+        const response = await axios.get('/api/user/logout',{withCredentials: true})
         return response.data
     }catch(err){
         return err.response.data
@@ -38,18 +54,31 @@ const userSlice = createSlice({
             // login cases
             // pending case
             .addCase(loginUser.pending,state=>{
-                console.log('PENDING')
+                state.isLogginLoading = true
             })
 
             // fulfilled case
             .addCase(loginUser.fulfilled,(state,action)=>{
+                state.isLogginLoading = false
                 if(action.payload.user){
-                    console.log("FULFILLED")
                     state.user = action.payload.user
+                    state.isLoginSuccessFull = true
+                    state.isLogoutSuccessFull = false
+                    localStorage.setItem('user',JSON.stringify(action.payload.user))
                 }
                 if(action.payload.errors){
-                    console.log('ERROR')
                     state.errors = action.payload.errors
+                }
+            })
+
+            // logout cases
+            .addCase(logoutUser.fulfilled,(state,action)=>{
+                if(action.payload.message){
+                    state.user = null
+                    state.errors = null
+                    state.isLoginSuccessFull = false
+                    state.isLogoutSuccessFull = true
+                    localStorage.removeItem('user')
                 }
             })
     }
@@ -59,6 +88,9 @@ export const selecteIsShowLogin = state => state.user.isShowLogin
 export const selectIsFormError = state => state.user.isFormError 
 export const selectUser = state => state.user.user
 export const selectErrors = state => state.user.errors
+export const selecetIsLoginSuccessFull = state => state.user.isLoginSuccessFull
+export const selecetIsLogoutSuccessFull = state => state.user.isLogoutSuccessFull
+export const selectIsLoginLoading = state => state.user.isLogginLoading
 
 export const {
     loginSignupToggler,

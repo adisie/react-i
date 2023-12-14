@@ -32,6 +32,15 @@ const Home = () => {
         }
     })
 
+
+    if(window.innerWidth < 712){
+        const container = document.querySelector('.home-right-container')
+        if(container) container.style.display = 'none'
+      }else{
+        const container = document.querySelector('.home-right-container')
+        if(container) container.style.display = 'flex'
+      }
+
     return ( 
         <div className="home-container">
             <div className="sub-container home-content">

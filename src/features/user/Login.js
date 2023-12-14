@@ -9,7 +9,11 @@ import {
     loginUser,
     selectErrors,
     resetErrors,
+    selecetIsLoginSuccessFull,
+    selectIsLoginLoading,
 } from '../user/zuserSclice'
+
+import LoginSpinner from "../../components/spinners/LoginSpinner"
 
 const Login = () => {
   // states
@@ -24,6 +28,9 @@ const Login = () => {
   // states from slice
   const isFormError = useSelector(selectIsFormError)
   const errors = useSelector(selectErrors)
+  const isLoginSuccessFull = useSelector(selecetIsLoginSuccessFull)
+  const isLogginLoading = useSelector(selectIsLoginLoading)
+
   // dispatch
   const dispatch = useDispatch()
 
@@ -72,12 +79,14 @@ const Login = () => {
     }
   }
 
-  // if(!errors){
-  //   setFormField({
-  //     username: '',
-  //     password: ''
-  //   })
-  // }
+
+  if(isLoginSuccessFull){
+    window.location.assign('/')
+  }
+
+  if(isLogginLoading){
+    return <LoginSpinner />
+  }
 
   return (
     <div className="form-container">
