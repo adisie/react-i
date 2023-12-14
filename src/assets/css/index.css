@@ -6,10 +6,10 @@
 
 .container {
   width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 38px 1fr;
+  overflow: hidden;
 }
 .container .sub-container {
   max-width: 1000px;
@@ -55,4 +55,172 @@ header .header-container .nav-user .logged-out-nav button {
   font-family: "Times New Roman", Times, serif;
   cursor: pointer;
   margin-left: 0.35em;
+}
+header .header-container .nav-user .logged-in-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+header .header-container .nav-user .logged-in-nav .username-span {
+  font-size: small;
+  font-weight: bold;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.823);
+}
+header .header-container .nav-user .logged-in-nav .user-profile {
+  width: 32px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 0.3em;
+  display: flex;
+}
+header .header-container .nav-user .logged-in-nav .logout-btn {
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+  font-family: "Times New Roman", Times, serif;
+  text-transform: capitalize;
+  margin-left: 0.3em;
+  padding: 0.15em 1.5em;
+  border-radius: 0.15em;
+  border: 1px solid rgba(255, 255, 255, 0.823);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.823);
+  transition: 1s;
+}
+header .header-container .nav-user .logged-in-nav .logout-btn span {
+  position: absolute;
+  z-index: -3;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.823);
+  border-radius: 0.15em;
+  transition: 1s;
+}
+header .header-container .nav-user .logged-in-nav .logout-btn:hover {
+  color: rgb(2, 123, 167);
+  border: none;
+}
+header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
+  width: 100%;
+}
+
+.home-container {
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+.home-container .home-content {
+  padding: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  overflow: hidden;
+}
+.home-container .home-content .home-content-container {
+  padding: 0;
+  height: 100%;
+  background: yellow;
+  grid-column: 1/5;
+  overflow: hidden;
+}
+.home-container .home-content .home-right-container {
+  height: 100%;
+  grid-column: 5/7;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.home-container .home-content .home-right-container .form-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(223, 222, 222);
+}
+.home-container .home-content .home-right-container .form-container form {
+  width: 95%;
+  margin: 0.3em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid rgb(2, 123, 167);
+  border-radius: 0.3em;
+}
+.home-container .home-content .home-right-container .form-container form h3 {
+  margin: 0.35em;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  color: rgb(2, 123, 167);
+}
+.home-container .home-content .home-right-container .form-container form .input-controll {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  margin: 0.23em 0;
+}
+.home-container .home-content .home-right-container .form-container form .input-controll input {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.95em;
+  background: transparent;
+  outline: none;
+  border: 2px solid rgba(182, 182, 182, 0.509);
+  border-radius: 0.25em;
+  padding: 0.3em 0.75em;
+}
+.home-container .home-content .home-right-container .form-container form .input-controll input:focus {
+  border-color: rgba(135, 135, 135, 0.509);
+}
+.home-container .home-content .home-right-container .form-container form .input-controll .error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+  font-style: italic;
+  color: rgb(145, 0, 0);
+}
+.home-container .home-content .home-right-container .form-container form .btn-container {
+  margin-bottom: 0.5em;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.home-container .home-content .home-right-container .form-container form .btn-container .submit-btn {
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.95em;
+  padding: 0.13em 1.5em;
+  background: rgb(2, 123, 167);
+  color: white;
+  transition: 1s;
+}
+.home-container .home-content .home-right-container .form-container form .btn-container .submit-btn:active {
+  opacity: 0.5;
+}
+.home-container .home-content .home-right-container .form-container form .btn-container .nav-link-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: rgb(2, 123, 167);
+  font-size: small;
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
+}
+.home-container .home-content .home-right-container .form-container form .btn-container .nav-link-btn:hover {
+  text-decoration: underline;
+}
+.home-container .home-content .home-right-container .right-notification {
+  width: 100%;
+  height: 100%;
+  background: gray;
+  overflow: auto;
+}
+.home-container .home-content .home-right-container .right-notification::-webkit-scrollbar {
+  width: 0;
 }
