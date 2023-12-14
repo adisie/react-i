@@ -1,5 +1,11 @@
+import { useDispatch } from "react-redux"
+
+import {loginSignupToggler} from '../user/zuserSclice'
 
 const Signup = () => {
+  // dispatch 
+  const dispatch = useDispatch()
+
   return (
     <div className="form-container">
         <form>
@@ -22,7 +28,7 @@ const Signup = () => {
             </div>
             <div className="btn-container">
                 <span className="submit-btn">Signup</span>
-                <span className="nav-link-btn">have account ?</span>
+                <span className="nav-link-btn" onClick={()=>dispatch(loginSignupToggler())}>have account ?</span>
             </div>
         </form>
     </div>

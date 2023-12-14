@@ -1,13 +1,28 @@
+import {useSelector,useDispatch} from 'react-redux'
 
+import {selectUser,formErrorToggler} from '../user/zuserSclice'
 // sub-pages
 import LoginSignup from "../user/LoginSignup"
 
 const Home = () => {
+    // states
+    const user = useSelector(selectUser)
+
+    // distpatch
+    const dispatch = useDispatch()
+
+    // checker
+    const userChecker = () => {
+        if(!user){
+            dispatch(formErrorToggler(true))
+        }
+    }
     return ( 
         <div className="home-container">
             <div className="sub-container home-content">
                <div className="home-content-container">
                     <h3>Content</h3>
+                    <button onClick={userChecker}>Add New BTN</button>
                </div>
                <div className="home-right-container">
                     <LoginSignup />

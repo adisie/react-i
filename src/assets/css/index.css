@@ -142,6 +142,7 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
   background: rgb(223, 222, 222);
 }
 .home-container .home-content .home-right-container .form-container form {
+  position: relative;
   width: 95%;
   margin: 0.3em auto;
   display: flex;
@@ -149,6 +150,49 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
   align-items: center;
   border: 2px solid rgb(2, 123, 167);
   border-radius: 0.3em;
+}
+.home-container .home-content .home-right-container .form-container form.error {
+  border: none;
+}
+.home-container .home-content .home-right-container .form-container form.error::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 2px solid transparent;
+  border-top: 2px solid transparent;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  animation: grow-border 0.3s infinite alternate;
+}
+@keyframes grow-border {
+  100% {
+    width: 100%;
+    height: 100%;
+    border-color: rgb(145, 0, 0);
+  }
+}
+.home-container .home-content .home-right-container .form-container form.error::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  animation: grow-border 0.3s infinite alternate;
+}
+@keyframes grow-border {
+  100% {
+    width: 100%;
+    height: 100%;
+    border-color: rgb(145, 0, 0);
+  }
 }
 .home-container .home-content .home-right-container .form-container form h3 {
   margin: 0.35em;
@@ -223,4 +267,29 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
 }
 .home-container .home-content .home-right-container .right-notification::-webkit-scrollbar {
   width: 0;
+}
+
+@media screen and (max-width: 712px) {
+  .home-container .home-content {
+    position: relative;
+  }
+  .home-container .home-content .home-content-container {
+    grid-column: 1/7;
+  }
+  .home-container .home-content .home-right-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 21;
+  }
+  .home-container .home-content .home-right-container .form-container {
+    padding: 0.3em 0.5em;
+  }
+  .home-container .home-content .home-right-container .form-container form {
+    width: 100%;
+  }
+  .home-container .home-content .home-right-container .form-container form .input-controll,
+  .home-container .home-content .home-right-container .form-container form .btn-container {
+    width: 95%;
+  }
 }
