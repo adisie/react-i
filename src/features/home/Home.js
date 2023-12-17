@@ -3,6 +3,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import {selectUser,formErrorToggler,loginSignupToggler} from '../user/zuserSclice'
 // sub-pages
 import HomeRightContainer from './sub-home/HomeRightContainer'
+import Posts from '../posts/Posts'
 
 const Home = () => {
     // states
@@ -15,8 +16,7 @@ const Home = () => {
 
     // checker
     const userChecker = () => {
-        rightContainer.style.display = 'flex'
-        // if(rightContainer.)
+        if(rightContainer) rightContainer.style.display = 'flex'
         if(!user){
             dispatch(loginSignupToggler(true))
             dispatch(formErrorToggler(true))
@@ -27,7 +27,7 @@ const Home = () => {
     window.addEventListener('resize',e=>{
 
         if(window.innerWidth <= 712){
-            rightContainer.style.display = 'none'
+            if(rightContainer) rightContainer.style.display = 'none'
             if(userProfile){
                 userProfile.style.transform = "scale(1)"
                 userProfile.style.width = "28px"
@@ -35,7 +35,7 @@ const Home = () => {
                 userProfile.style.marginLeft = ".3em"
             }
         }else {
-            rightContainer.style.display = 'flex'
+            if(rightContainer) rightContainer.style.display = 'flex'
             if(userProfile) {
                 userProfile.style.transform = "scale(0)"
                 userProfile.style.width = "0px"
@@ -56,8 +56,8 @@ const Home = () => {
         <div className="home-container">
             <div className="sub-container home-content">
                <div className="home-content-container">
-                    <h3>Content</h3>
-                    <button onClick={userChecker}>Add New BTN</button>
+                    <Posts />
+                    {/* <button onClick={userChecker}>Add New BTN</button> */}
                </div>
                <HomeRightContainer />
             </div>
