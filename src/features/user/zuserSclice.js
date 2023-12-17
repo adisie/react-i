@@ -34,6 +34,17 @@ export const logoutUser = createAsyncThunk('user/logoutUser',async () => {
     }
 })
 
+// signup user
+export const signupUser = createAsyncThunk('user/signupUser',async data => {
+    try{
+        const response = await axios.post('/api/user/signup',data,{withCredentials: true})
+        return response.data
+    }catch(err){
+        return err.response.data
+    }
+})
+
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -79,6 +90,25 @@ const userSlice = createSlice({
                     state.isLoginSuccessFull = false
                     state.isLogoutSuccessFull = true
                     localStorage.removeItem('user')
+                }
+            })
+
+            // signup cases
+            // pending case
+            .addCase(signupUser.pending,state=>{
+                state.isLogginLoading = true
+            })
+
+            // fulfilled case
+            .addCase(signupUser.fulfilled,(state,action)=>{
+                state.isLogginLoading = false 
+                if(action.payload.user){
+                    state.user = action.payload.user 
+                    state.isLoginSuccessFull = true
+                    localStorage.setItem('user',JSON.stringify(action.payload.user))
+                }
+                if(action.payload.errors){
+                    state.errors = action.payload.errors
                 }
             })
     }

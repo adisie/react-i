@@ -7,13 +7,14 @@ import HomeRightContainer from './sub-home/HomeRightContainer'
 const Home = () => {
     // states
     const user = useSelector(selectUser)
+    const rightContainer = document.querySelector('.home-right-container')
+    const userProfile = document.querySelector('.user-profile')
 
     // distpatch
     const dispatch = useDispatch()
 
     // checker
     const userChecker = () => {
-        const rightContainer = document.querySelector('.home-right-container')
         rightContainer.style.display = 'flex'
         // if(rightContainer.)
         if(!user){
@@ -24,21 +25,31 @@ const Home = () => {
 
 
     window.addEventListener('resize',e=>{
-        const container = document.querySelector('.home-right-container')
+
         if(window.innerWidth <= 712){
-            container.style.display = 'none'
+            rightContainer.style.display = 'none'
+            if(userProfile){
+                userProfile.style.transform = "scale(1)"
+                userProfile.style.width = "28px"
+                userProfile.style.height = "28px"
+                userProfile.style.marginLeft = ".3em"
+            }
         }else {
-            container.style.display = 'flex'
+            rightContainer.style.display = 'flex'
+            if(userProfile) {
+                userProfile.style.transform = "scale(0)"
+                userProfile.style.width = "0px"
+                userProfile.style.height = "0px"
+              }
+
         }
     })
 
 
     if(window.innerWidth < 712){
-        const container = document.querySelector('.home-right-container')
-        if(container) container.style.display = 'none'
+        if(rightContainer) rightContainer.style.display = 'none'
       }else{
-        const container = document.querySelector('.home-right-container')
-        if(container) container.style.display = 'flex'
+        if(rightContainer) rightContainer.style.display = 'flex'
       }
 
     return ( 

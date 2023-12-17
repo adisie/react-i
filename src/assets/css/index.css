@@ -68,12 +68,11 @@ header .header-container .nav-user .logged-in-nav .username-span {
   color: rgba(255, 255, 255, 0.823);
 }
 header .header-container .nav-user .logged-in-nav .user-profile {
-  display: none !important;
-  width: 32px;
-  height: 28px;
+  transform: scale(0);
+  width: 0px;
+  height: 0px;
   border-radius: 50%;
   cursor: pointer;
-  margin-left: 0.3em;
   display: flex;
 }
 header .header-container .nav-user .logged-in-nav .logout-btn {
@@ -111,7 +110,10 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
 
 @media screen and (max-width: 712px) {
   header .header-container .nav-user .logged-in-nav .user-profile {
-    display: flex !important;
+    transform: scale(1);
+    margin-left: 0.3em;
+    width: 28px;
+    height: 28px;
   }
 }
 .home-container {

@@ -1,8 +1,18 @@
 import { useState } from "react"
 
-import { useDispatch } from "react-redux"
+import { useDispatch,useSelector } from "react-redux"
 
-import {loginSignupToggler,resetErrors} from '../user/zuserSclice'
+import {
+    loginSignupToggler,
+    resetErrors,
+    selectIsLoginLoading,
+    selectErrors,
+    selecetIsLoginSuccessFull,
+    signupUser,
+} from '../user/zuserSclice'
+
+// spinner
+import LoginSpinner from "../../components/spinners/LoginSpinner"
 
 const Signup = () => {
     // local states
@@ -12,6 +22,11 @@ const Signup = () => {
         password: '',
         password2: ''
     })
+
+    // slice states
+    const isLogginLoading = useSelector(selectIsLoginLoading)
+    const isLoginSuccessFull = useSelector(selecetIsLoginSuccessFull)
+    const errors = useSelector(selectErrors)
 
     // fields
     const {username,email,password,password2} = formField 
@@ -63,15 +78,24 @@ const Signup = () => {
         }
 
         if(username.trim() && email.trim() && password && password2 && password === password2){
-            console.log({username,email,password})
-            setFormField({
-                username: '',
-                email: '',
-                password: '',
-                password2: ''
-            })
+            dispatch(signupUser({username,email,password}))
+            // setFormField({
+            //     username: '',
+            //     email: '',
+            //     password: '',
+            //     password2: ''
+            // })
         }
     }
+
+    if(isLoginSuccessFull){
+        window.location.assign('/')
+    }
+
+    
+  if(isLogginLoading){
+    return <LoginSpinner />
+  }
 
   return (
     <div className="form-container">
@@ -81,19 +105,19 @@ const Signup = () => {
                 <input type="text" placeholder="username" name="username" 
                     value={username} 
                     onChange={inputChangeHandler} />
-                <div className="error username"></div>
+                <div className="error username">{errors ? errors.username : ''}</div>
             </div>
             <div className="input-controll">
                 <input type="text" placeholder="email" name="email" 
                     value={email} 
                     onChange={inputChangeHandler} />
-                <div className="error email"></div>
+                <div className="error email">{errors ? errors.email : ''}</div>
             </div>
             <div className="input-controll">
                 <input type="password" placeholder="password" name="password" 
                     value={password} 
                     onChange={inputChangeHandler} />
-                <div className="error password"></div>
+                <div className="error password">{errors ? errors.password : ''}</div>
             </div>
             <div className="input-controll">
                 <input type="password" placeholder="confirm password"  name="password2" 

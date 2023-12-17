@@ -21,6 +21,8 @@ const HomeRightContainer = () => {
     const hideHomeRightContainer = () => {
         dispatch(resetErrors())
         const container = document.querySelector('.home-right-container')
+        const userProfile = document.querySelector('.user-profile') 
+
         const usernameError = document.querySelector('.error.username')
         const emailError = document.querySelector('.error.email')
         const passwordError = document.querySelector('.error.password')
@@ -32,6 +34,12 @@ const HomeRightContainer = () => {
 
         if(window.innerWidth < 712) {
             container.style.display = 'none'
+            if(userProfile) {
+                userProfile.style.transform = "scale(1)"
+                userProfile.style.width = "28px"
+                userProfile.style.height = "28px"
+                userProfile.style.marginLeft = ".3em"
+            }
         }
     }
 
