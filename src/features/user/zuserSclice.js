@@ -45,6 +45,17 @@ export const signupUser = createAsyncThunk('user/signupUser',async data => {
 })
 
 
+// check token
+export const checkToken = createAsyncThunk('user/checkToken',async () => {
+    try{
+        const response = await axios.get('/api/user/auth-check',{withCredentials: true})
+        return response.data
+    }catch(err){
+        return err.response.data
+    }
+})
+
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -109,6 +120,16 @@ const userSlice = createSlice({
                 }
                 if(action.payload.errors){
                     state.errors = action.payload.errors
+                }
+            })
+
+
+            // token checker 
+            // fulfilled case
+            .addCase(checkToken.fulfilled,(state,action)=>{
+                if(action.payload.error){
+                    state.user = null 
+                    localStorage.removeItem('user')
                 }
             })
     }

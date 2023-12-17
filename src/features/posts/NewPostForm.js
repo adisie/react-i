@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { AiFillPlusCircle } from "react-icons/ai"
 
@@ -5,11 +6,16 @@ import { AiFillPlusCircle } from "react-icons/ai"
 import {selectUser,loginSignupToggler,formErrorToggler} from '../user/zuserSclice'
 
 const NewPostForm = () => {
+    // local states
+    const [body,setBody] = useState('')
+
+    // fields
      // states
      const user = useSelector(selectUser)
 
     // DOM elements
     const rightContainer = document.querySelector('.home-right-container')
+    const textArea = document.querySelector('textarea[name="body"]')
 
     // dispatch
     const dispatch = useDispatch()
@@ -35,9 +41,22 @@ const NewPostForm = () => {
     // check a user is logged in or not
     const isUserExist = e => {
         if(!user){
+            if(rightContainer) rightContainer.style.display = 'flex'
             e.target.blur()
             e.target.disable = true
             userChecker()
+        }else {
+            e.target.focus()
+            e.target.disable = false
+        }
+    }
+
+    // add new submit handler
+    const submitHandler = () => {
+        if(body.trim()){
+            console.log(body)
+            setBody('')
+            textArea.style.height = '29px'
         }
     }
 
@@ -47,9 +66,11 @@ const NewPostForm = () => {
             <form>
                 <textarea name="body" 
                     onKeyUp={adjustTextAreaHeight} 
-                    onFocus={isUserExist}
+                    onFocus={isUserExist} 
+                    value={body} 
+                    onChange={e=>setBody(e.target.value)}
                     ></textarea>
-                <span className="send-btn"><AiFillPlusCircle /></span>
+                <span className="send-btn" onClick={submitHandler}><AiFillPlusCircle /></span>
             </form>
         </div>
     </div>

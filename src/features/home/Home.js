@@ -1,16 +1,27 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
+// actions
+import {checkToken} from '../user/zuserSclice'
 // sub-pages
 import HomeRightContainer from './sub-home/HomeRightContainer'
 import Posts from '../posts/Posts'
+
 
 const Home = () => {
     // states
     const rightContainer = document.querySelector('.home-right-container')
     const userProfile = document.querySelector('.user-profile')
 
+    // dispatch
+    const dispatch = useDispatch()
 
+    // effects
+    useEffect(()=>{
+        dispatch(checkToken())
+    },[])
 
-    window.addEventListener('resize',e=>{
+    window.addEventListener('resize',()=>{
 
         if(window.innerWidth <= 712){
             if(rightContainer) rightContainer.style.display = 'none'
@@ -43,7 +54,6 @@ const Home = () => {
             <div className="sub-container home-content">
                <div className="home-content-container">
                     <Posts />
-                    {/* <button onClick={userChecker}>Add New BTN</button> */}
                </div>
                <HomeRightContainer />
             </div>
