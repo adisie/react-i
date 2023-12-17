@@ -1,15 +1,12 @@
 // sub-pages
 import PostList from "./PostList"
+import NewPostForm from "./NewPostForm"
+
 const Posts = () => {
   return (
     <div className="posts">
       <PostList />
-      <div className="add-new-post-form-container">
-        <form>
-          <textarea name="body"></textarea>
-          <button>send</button>
-        </form>
-      </div>
+      <NewPostForm />
     </div>
   )
 }

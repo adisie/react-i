@@ -1,27 +1,13 @@
-import {useSelector,useDispatch} from 'react-redux'
 
-import {selectUser,formErrorToggler,loginSignupToggler} from '../user/zuserSclice'
 // sub-pages
 import HomeRightContainer from './sub-home/HomeRightContainer'
 import Posts from '../posts/Posts'
 
 const Home = () => {
     // states
-    const user = useSelector(selectUser)
     const rightContainer = document.querySelector('.home-right-container')
     const userProfile = document.querySelector('.user-profile')
 
-    // distpatch
-    const dispatch = useDispatch()
-
-    // checker
-    const userChecker = () => {
-        if(rightContainer) rightContainer.style.display = 'flex'
-        if(!user){
-            dispatch(loginSignupToggler(true))
-            dispatch(formErrorToggler(true))
-        }
-    }
 
 
     window.addEventListener('resize',e=>{

@@ -381,10 +381,11 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
 .posts {
   width: 100%;
   height: 100%;
-  padding-right: 0.13em;
+  padding: 0 0.13em;
   display: grid;
   grid-template-rows: 1fr 38px;
   overflow: hidden;
+  background: rgb(232, 232, 232);
 }
 .posts .post-list {
   width: 100%;
@@ -463,4 +464,47 @@ header .header-container .nav-user .logged-in-nav .logout-btn:hover span {
   font-size: small;
   font-style: italic;
   margin-right: 0.3em;
+}
+.posts .add-new-post-form-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+.posts .add-new-post-form-container .form-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.posts .add-new-post-form-container .form-container form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.posts .add-new-post-form-container .form-container form textarea {
+  margin-bottom: 0.5em;
+  width: 300px;
+  outline: none;
+  resize: none;
+  height: 26px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  padding: 0.13em 0.3em;
+  border-radius: 0.3em;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.95em;
+  background: whitesmoke;
+  max-height: 450px;
+}
+.posts .add-new-post-form-container .form-container form textarea::-webkit-scrollbar {
+  display: none;
+}
+.posts .add-new-post-form-container .form-container form .send-btn {
+  align-self: flex-end;
+  cursor: pointer;
+  font-size: 1.5em;
+  margin-left: 0.13em;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: -0.15em;
 }
