@@ -1,17 +1,24 @@
+import { useSelector } from "react-redux"
+
+// actions
+import { selectPosts } from "./zpostSlice"
+
 // sub-pages
 import Post from "./Post"
 const PostList = () => {
+
+  // states from slice
+  const posts = useSelector(selectPosts)
+
+  console.log(posts)
+
   return (
     <div className="post-list">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {
+          posts.map(post=>{
+            return <Post key={post._id} post={post} />
+          })
+        }
       </div>
   )
 }

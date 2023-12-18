@@ -4,6 +4,7 @@ import { AiFillPlusCircle } from "react-icons/ai"
 
 // actions
 import {selectUser,loginSignupToggler,formErrorToggler} from '../user/zuserSclice'
+import {addPost} from '../posts/zpostSlice'
 
 const NewPostForm = () => {
     // local states
@@ -54,7 +55,7 @@ const NewPostForm = () => {
     // add new submit handler
     const submitHandler = () => {
         if(body.trim()){
-            console.log(body)
+            dispatch(addPost({body}))
             setBody('')
             textArea.style.height = '29px'
         }
