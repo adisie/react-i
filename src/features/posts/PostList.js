@@ -10,8 +10,6 @@ const PostList = () => {
   // states from slice
   const posts = useSelector(selectPosts)
 
-  console.log(posts)
-
   return (
     <div className="post-list">
         {

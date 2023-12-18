@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 
 // actions
-import { getPosts } from "./zpostSlice"
+import { getAuthors,getPosts } from "./zpostSlice"
 
 // sub-pages
 import PostList from "./PostList"
@@ -14,8 +14,9 @@ const Posts = () => {
   const dispatch = useDispatch()
 
   useEffect(()=>{
+    dispatch(getAuthors())
     dispatch(getPosts())
-  },[])
+  },[dispatch])
   return (
     <div className="posts">
       <PostList />

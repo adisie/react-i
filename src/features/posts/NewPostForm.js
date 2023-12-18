@@ -4,7 +4,7 @@ import { AiFillPlusCircle } from "react-icons/ai"
 
 // actions
 import {selectUser,loginSignupToggler,formErrorToggler} from '../user/zuserSclice'
-import {addPost} from '../posts/zpostSlice'
+import {addPost,getAuthors} from '../posts/zpostSlice'
 
 const NewPostForm = () => {
     // local states
